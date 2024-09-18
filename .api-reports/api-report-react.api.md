@@ -2238,7 +2238,7 @@ export function useSubscription<TData = any, TVariables extends OperationVariabl
 // Warning: (ae-forgotten-export) The symbol "UseSuspenseFragmentOptions" needs to be exported by the entry point index.d.ts
 //
 // @public (undocumented)
-export function useSuspenseFragment<TData, TVariables>(options: UseSuspenseFragmentOptions<TData, TVariables>): UseSuspenseFragmentResult<TData>;
+export function useSuspenseFragment<TData = unknown, TVariables extends OperationVariables = OperationVariables>(options: UseSuspenseFragmentOptions<TData, TVariables>): UseSuspenseFragmentResult<TData>;
 
 // @public (undocumented)
 interface UseSuspenseFragmentOptions<TData, TVars> extends Omit<Cache_2.DiffOptions<NoInfer<TData>, NoInfer<TVars>>, "id" | "query" | "optimistic" | "previousResult" | "returnPartialData">, Omit<Cache_2.ReadFragmentOptions<TData, TVars>, "id" | "variables" | "returnPartialData"> {

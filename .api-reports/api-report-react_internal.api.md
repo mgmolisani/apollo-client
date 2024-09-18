@@ -762,6 +762,13 @@ interface FieldSpecifier {
 }
 
 // @public (undocumented)
+type FragmentCacheKey = [
+cacheId: string,
+fragment: DocumentNode,
+stringifiedVariables: string
+];
+
+// @public (undocumented)
 interface FragmentKey {
     // (undocumented)
     __fragmentKey?: string;
@@ -1888,10 +1895,11 @@ class SuspenseCache {
     constructor(options?: SuspenseCacheOptions);
     // (undocumented)
     add(cacheKey: CacheKey, queryRef: InternalQueryReference<unknown>): void;
+    // Warning: (ae-forgotten-export) The symbol "FragmentCacheKey" needs to be exported by the entry point index.d.ts
     // Warning: (ae-forgotten-export) The symbol "FragmentReference" needs to be exported by the entry point index.d.ts
     //
     // (undocumented)
-    getFragmentRef<TData>(cacheKey: CacheKey, createObservable: () => Observable<WatchFragmentResult<TData>>): FragmentReference<TData>;
+    getFragmentRef<TData>(cacheKey: FragmentCacheKey, createObservable: () => Observable<WatchFragmentResult<TData>>): FragmentReference<TData>;
     // (undocumented)
     getQueryRef<TData = any>(cacheKey: CacheKey, createObservable: () => ObservableQuery<TData>): InternalQueryReference<TData>;
 }
@@ -2118,6 +2126,26 @@ interface UseReadQueryResult<TData = unknown> {
     networkStatus: NetworkStatus;
 }
 
+// Warning: (ae-forgotten-export) The symbol "UseSuspenseFragmentOptions" needs to be exported by the entry point index.d.ts
+// Warning: (ae-forgotten-export) The symbol "UseSuspenseFragmentResult" needs to be exported by the entry point index.d.ts
+//
+// @public (undocumented)
+function useSuspenseFragment<TData = unknown, TVariables extends OperationVariables = OperationVariables>(options: UseSuspenseFragmentOptions<TData, TVariables>): UseSuspenseFragmentResult<TData>;
+
+// @public (undocumented)
+interface UseSuspenseFragmentOptions<TData, TVars> extends Omit<Cache_2.DiffOptions<NoInfer<TData>, NoInfer<TVars>>, "id" | "query" | "optimistic" | "previousResult" | "returnPartialData">, Omit<Cache_2.ReadFragmentOptions<TData, TVars>, "id" | "variables" | "returnPartialData"> {
+    client?: ApolloClient<any>;
+    // (undocumented)
+    from: StoreObject | Reference | string;
+    // (undocumented)
+    optimistic?: boolean;
+}
+
+// @public (undocumented)
+type UseSuspenseFragmentResult<TData> = {
+    data: TData;
+};
+
 // Warning: (ae-forgotten-export) The symbol "SuspenseQueryHookOptions" needs to be exported by the entry point index.d.ts
 // Warning: (ae-forgotten-export) The symbol "UseSuspenseQueryResult" needs to be exported by the entry point index.d.ts
 //
@@ -2245,6 +2273,10 @@ interface WrappableHooks {
     //
     // (undocumented)
     useReadQuery: typeof useReadQuery;
+    // Warning: (ae-forgotten-export) The symbol "useSuspenseFragment" needs to be exported by the entry point index.d.ts
+    //
+    // (undocumented)
+    useSuspenseFragment: typeof useSuspenseFragment;
     // Warning: (ae-forgotten-export) The symbol "useSuspenseQuery" needs to be exported by the entry point index.d.ts
     //
     // (undocumented)
